@@ -1,0 +1,103 @@
+:root {
+  --ink: #14272e;
+  --muted: #5a6c73;
+  --paper: #f7f9fa;
+  --panel: #ffffff;
+  --line: #d3dde1;
+  --accent: #0a7c86;
+  --accent-dark: #075c64;
+  --signal: #f2b134;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* 1. Header */
+header { background: var(--panel); border-bottom: 4px solid var(--signal); }
+header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 120px;
+  gap: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.logo { height: 88px; width: auto; max-width: 100%; object-fit: contain; display: block; flex-shrink: 0; }
+.contact { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px 28px; padding-top: 8px; margin-left: auto; min-width: 0; }
+.contact a {
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.contact a:hover { text-decoration: underline; }
+
+main {
+  background: #07111f url("background.svg") center / cover no-repeat;
+}
+section { padding: 56px 0; }
+section + section { border-top: 1px solid rgba(255, 255, 255, .15); }
+h1 { margin: 0 0 28px; font-size: 2.00rem; font-weight: 800; color: #fff; }
+h2 { margin: 0 0 28px; font-size: 1.5rem; font-weight: 600; color: #fff; }
+p { margin: 0 0 28px; font-size: 1.00rem; font-weight: 400; color: #fff; }
+
+.grid { display: grid; gap: 16px; }
+
+/* 2. What we do */
+.do { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.do div {
+  background: var(--accent);
+  color: #fff;
+  padding: 36px 20px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* 3 & 4. Moving single-line image rows */
+.marquee { overflow: hidden; }
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+.marquee:hover .track { animation-play-state: paused; }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.tile {
+  flex: 0 0 200px;
+  height: 150px;
+  margin-right: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.tile img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .track { animation: none; }
+}
+
+footer { background: var(--ink); color: #c5d2d7; padding: 24px 0; font-size: .875rem; }
+
+@media (max-width: 600px) {
+  header .wrap { gap: 12px; }
+  .logo { height: 56px; }
+  .contact { flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 0; }
+  .contact a { font-size: .95rem; overflow-wrap: anywhere; text-align: right; }
+}
